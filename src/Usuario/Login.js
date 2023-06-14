@@ -1,19 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Background.css';
-
+import {  signInWithEmailAndPassword   } from 'firebase/auth';
+import { auth } from '../firebase';
+import { Link, useNavigate } from 'react-router-dom'
 const Login = () => {
-    const [usuario, setUsuario] = useState({usuario: '', password: '' });
-
-    const handleInputChange = (e) => {
-        setUsuario({ ...usuario, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = (e) => {
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+       
+    const onLogin = (e) => {
         e.preventDefault();
-        login(usuario);
-        setUsuario({usuario: '', password: '' }); /*da la estructura del json*/
-    };
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            navigate("/")
+            console.log(user);
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage)
+        });
+       
+    }
 
     const login = async (usuario) => {
         try {
@@ -47,24 +58,26 @@ const Login = () => {
                                 <div className="card-body p-5 text-center">
 
                                     <div className="mb-md-2 mt-md-2 pb-2">
-                                        <form onSubmit={handleSubmit}>
+                                        <form onSubmit={onLogin}>
                                             <h2 className="fw-bold mb-2 text-uppercase">Iniciar sesión</h2>
 
                                             <div className="form-outline mb-2">
-                                                <input type="text" id="usuario" name='usuario' onChange={handleInputChange} className="form-control form-control-lg" />
-                                                <label className="form-label" htmlFor="usuario">Usuario</label>
+                                                <label className="form-label" htmlFor="email">Correo Electrónico</label>
+
+                                                <input type="email" id="email" name='email' onChange={(e)=>setEmail(e.target.value)} className="form-control form-control-lg" />
                                             </div>
 
                                             <div className="form-outline mb-2">
-                                                <input type="password" id="password" name='password' onChange={handleInputChange} className="form-control form-control-lg" />
                                                 <label className="form-label" htmlFor="password">Contraseña</label>
+
+                                                <input type="password" id="password" name='password' onChange={(e)=>setPassword(e.target.value)} className="form-control form-control-lg" />
                                             </div>
 
                                             <p className="small mb-1 pb-lg-2"><a className="text-50" href="#!">¿Olvidaste tu Contraseña?</a></p>
 
                                             <button className="btn btn-primary btn-lg px-5" type="submit">Iniciar sesión</button>
                                         </form>
-                                        <p className="mb-0">No tienes una cuenta? <a href="#!" className="text-50 fw-bold">Regístrate</a>
+                                        <p className="mb-0">No tienes una cuenta? <Link className="text-50 fw-bold" to={`/signup`}>Regístrate</Link>
                                         </p>
 
                                     </div>
