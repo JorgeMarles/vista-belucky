@@ -1,47 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState, useRef } from 'react';
 import './Background.css';
-import {  signInWithEmailAndPassword   } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import { Link, useNavigate } from 'react-router-dom'
+
 const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-       
+
     const onLogin = (e) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            navigate("/")
-            console.log(user);
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage)
-        });
-       
-    }
+            .then((userCredential) => {
+                // Signed in
+                navigate("/")
 
-    const login = async (usuario) => {
-        try {
-            console.log(usuario);
-            await axios.post("http://localhost:8080/BeLucky/api/apiusuario/login", usuario, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-
-            }).then(response => {
-                console.log(response.data);
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage)
             });
-        } catch (error) {
-            console.error(error);
-        }
 
-    };
+    }
 
     return (
         <>
@@ -64,13 +46,13 @@ const Login = () => {
                                             <div className="form-outline mb-2">
                                                 <label className="form-label" htmlFor="email">Correo Electrónico</label>
 
-                                                <input type="email" id="email" name='email' onChange={(e)=>setEmail(e.target.value)} className="form-control form-control-lg" />
+                                                <input type="email" id="email" name='email' onChange={(e) => setEmail(e.target.value)} className="form-control form-control-lg" />
                                             </div>
 
                                             <div className="form-outline mb-2">
                                                 <label className="form-label" htmlFor="password">Contraseña</label>
 
-                                                <input type="password" id="password" name='password' onChange={(e)=>setPassword(e.target.value)} className="form-control form-control-lg" />
+                                                <input type="password" id="password" name='password' onChange={(e) => setPassword(e.target.value)} className="form-control form-control-lg" />
                                             </div>
 
                                             <p className="small mb-1 pb-lg-2"><a className="text-50" href="#!">¿Olvidaste tu Contraseña?</a></p>

@@ -5,16 +5,20 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from './firebase';
+import info from './Usuario/info'
+import NavBar from './Usuario/NavBar';
 
 function Root() {
   const navigate = useNavigate();
   let [usuario, setUsuario] = useState({});
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
+    onAuthStateChanged(auth, async (user) => {
+
+      if (user!==undefined && user.uid) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
-        setUsuario(user);
+        setUsuario(await info(user.uid))
+        //setUsuario(inf);
       } else {
         // User is signed out
         // ...
@@ -24,16 +28,6 @@ function Root() {
 
   }, [])
 
-  const logOut = () => {
-    signOut(auth).then(() => {
-      // Sign-out successful.
-      navigate(0);
-      
-      console.log("Signed out successfully")
-    }).catch((error) => {
-      // An error happened.
-    });
-  }
 
   return (
     <>
@@ -43,7 +37,7 @@ function Root() {
           <Link className="nav-link" to={`/`}  >
 
             <div className='d-flex align-items-center'>
-              <img src={logo} width={150} />
+              <img src={logo} width={150} alt='Logo' />
               <h1>BeLucky</h1>
 
             </div>
@@ -62,13 +56,11 @@ function Root() {
                   <a className="nav-link" href="/about">Sobre Nosotros</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/contact">Contactanos</a>
+                  <a className="nav-link" href="/contact">Contáctanos</a>
                 </li>
                 {
                   usuario.uid ?
-                    <li className="nav-item">
-                      <button className='nav-link' onClick={logOut}>Cerrar Sesión</button>
-                    </li>
+                  <NavBar user={usuario} />
                     :
                     <li className="nav-item">
                       <Link className="nav-link" to={`/login`} >Iniciar Sesión</Link>
@@ -83,7 +75,7 @@ function Root() {
         </div>
       </nav>
       <div id="detail">
-        <Outlet />
+        <Outlet user={usuario}/>
       </div>
     </>
   );

@@ -10,7 +10,9 @@ import ErrorPage from "./ErrorPage";
 import Root from './Root';
 import Login from './Usuario/Login';
 import SignUp from './Usuario/SignUp';
-
+import { CookiesProvider } from 'react-cookie';
+import LogOut from './Usuario/Logout';
+import DashBoard from './Usuario/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,15 @@ const router = createBrowserRouter([
         path: "signup",
         element: <SignUp />,
       },
+      {
+        path: "logout",
+        element: <LogOut />,
+      },
+      {
+        path: "dashboard/",
+        element: <DashBoard />,
+      },
+      
     ],
   },
 ]);
@@ -33,6 +44,7 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <CookiesProvider />
     <RouterProvider router={router} />
   </React.StrictMode>
 );
