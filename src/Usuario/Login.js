@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Background.css';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useOutletContext } from 'react-router-dom'
 
 const Login = () => {
     const navigate = useNavigate();
@@ -24,6 +24,16 @@ const Login = () => {
             });
 
     }
+    const usuario = useOutletContext();
+
+    useEffect(()=>{
+        console.log(usuario);
+
+        if(usuario.hasOwnProperty("uid")){
+            console.log("tiene uid");
+            navigate("/")
+        }
+    },[])
 
     return (
         <>

@@ -2,13 +2,20 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Background.css';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { Link, Outlet, useNavigate, useOutletContext} from 'react-router-dom'
 
-const DashBoard = ({user}) => {
+const DashBoard = () => {
+    const navigate = useNavigate();
+    const usuario = useOutletContext();
 
     useEffect(()=>{
-        console.log(user);
-    }, [])
+        console.log(usuario);
+
+        if(!usuario.hasOwnProperty("uid")){
+            console.log("en dash no tiene uid");
+            navigate("/login")
+        }
+    },[])
 
     return (
         <>

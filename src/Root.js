@@ -14,7 +14,7 @@ function Root() {
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
 
-      if (user!==undefined && user.uid) {
+      if (user && user !== null && user!==undefined && user.uid) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         setUsuario(await info(user.uid))
@@ -75,7 +75,7 @@ function Root() {
         </div>
       </nav>
       <div id="detail">
-        <Outlet user={usuario}/>
+        <Outlet context={usuario}/>
       </div>
     </>
   );

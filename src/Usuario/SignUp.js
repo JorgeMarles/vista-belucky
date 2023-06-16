@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Background.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useOutletContext } from 'react-router-dom';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
+
 
 const SignUp = () => {
 
@@ -65,6 +66,16 @@ const SignUp = () => {
         });
     }
 
+    const usuario = useOutletContext();
+
+    useEffect(()=>{
+        console.log(usuario);
+
+        if(usuario.hasOwnProperty("uid")){
+            console.log("tiene uid");
+            navigate("/")
+        }
+    },[])
 
     return (
         <>
