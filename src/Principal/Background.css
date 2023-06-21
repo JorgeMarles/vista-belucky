@@ -1,0 +1,136 @@
+.bg-Principal {
+  background-image: url("./img/fondo.jpg");
+  background-size: cover;
+  background-position: 60%;
+  opacity: 90%;
+}
+
+.dividor {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  opacity: 50%;
+}
+
+.textexIzq {
+  padding: 4cm;
+  width: 10cm;
+  height: 11cm;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  opacity: 100%;
+}
+.textexDer {
+  padding: 4cm;
+  width: 10cm;
+  height: 11cm;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: baseline;
+  background-color: rgb(255, 255, 255);
+  opacity: 100%;
+}
+
+.titulo {
+  text-align: left;
+  font-family: "Courier New", Courier, monospace;
+  font-style: oblique;
+  color: rgb(255, 0, 0);
+  opacity: 100;
+  font-weight: bold;
+}
+.textInfo {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+}
+
+.cmdIzq {
+  position: relative;
+  width: 10cm;
+  height: 11cm;
+  padding: 5cm;
+  flex: 0.5;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  white-space: normal;
+  background-color: rgb(47, 0, 255);
+}
+.buttomIzq {
+  position: absolute;
+  width: 95%;
+  height: 11cm;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  opacity: 80%;
+  margin-top: auto;
+  bottom: 0;
+  left: 0;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 1.5cm;
+  transition: transform 0.2s ease;
+  white-space: normal;
+}
+.buttomIzq:hover {
+  transform: translateX(45px);
+  transition-delay: 0.5s;
+  background-image: url("./img/izquierda.png");
+  background-size: cover;
+  background-position: 60%;
+  opacity: 85%;
+}
+
+.buttomDer {
+  position: absolute;
+  width: 95%;
+  height: 11cm;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  text-align: left;
+  padding-right: 1cm;
+  justify-content: center;
+  opacity: 80%;
+  margin-top: auto;
+  bottom: 0;
+  right: 0;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 1.5cm;
+  transition: transform 0.7s ease;
+
+  white-space: normal;
+}
+.cmdDer {
+  position: relative;
+  width: 10cm;
+  height: 11cm;
+  padding: 5cm;
+  flex: 0.5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: right;
+  white-space: normal;
+  background-color: chocolate;
+}
+
+.buttomDer:hover {
+  transform: translateX(-45px);
+  transition-delay: 0.5s;
+  background-image: url("./img/derecha.jpg");
+  background-size: cover;
+  background-position: 60%;
+  opacity: 85%;
+}

@@ -1,81 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import './Background.css';
-import { Link, useNavigate, useOutletContext } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
+import { crearUsuario } from './ApiUsuario'
 
 
-const SignUp = () => {
+const SignUp = ({setUsuario}) => {
 
-    const navigate = useNavigate();
 
-    const [uid, setUid] = useState('')
     const [nombre, setNombre] = useState('')
     const [telefono, setTelefono] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
-    
-    const onSubmit = async (e) => {
-        e.preventDefault()
-        
-        
-        await createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-                // Signed in
-                const user = userCredential.user;
-                console.log(user.uid);
-                setUid(user.uid);
-                const usuario = {
-                    uid: user.uid,
-                    nombre: nombre,
-                    telefono: telefono,
-                    registro: new Date().toISOString().split('.')[0],
-                    correo: email
-                }
-                createUsuario(usuario);
-                
-                navigate("/login")
-                // ...
+
+    async function onSubmit(e) {
+        e.preventDefault();
+
+        try {
+            const credencial = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+            console.log("After dignup");
+            const usuarioCreado = await crearUsuario({
+                uid: credencial.user.uid,
+                nombre: nombre,
+                correo: email,
+                telefono: telefono,
+                registro: new Date().toISOString().split(".")[0]
             })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode, errorMessage);
-                // ..
-            });
-            
-            
-    }
-
-    const createUsuario = async (usuario) => {
-        console.log(usuario);
-        await axios.post("http://localhost:8080/BeLucky/api/apiusuario/usuario/", usuario, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-
-        }).then((response) => {
-            console.log(response);
-        }).catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
-        });
-    }
-
-    const usuario = useOutletContext();
-
-    useEffect(()=>{
-        console.log(usuario);
-
-        if(usuario.hasOwnProperty("uid")){
-            console.log("tiene uid");
-            navigate("/")
+            console.log("After creado database");
+            await setUsuario(usuarioCreado)
+            console.log("After setuser");
+        } catch (error) {
+            console.log(error);
+            if (error && error.response && error.response.status && error.response.status !== 500)
+                alert(error.message)
         }
-    },[])
+    }
 
     return (
         <>

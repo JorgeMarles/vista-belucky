@@ -1,0 +1,156 @@
+.bg{
+    background-image: url("./img/Fondo.jpg");
+    background-size: cover;
+    opacity: 80%;
+    display: flex;
+    align-items: flex-start;
+}
+.izq{
+    width: 100%;
+    height: 100%;
+    padding: 3%;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+.der{
+    
+    width: 40%;
+    height: 100%;
+    padding: 3%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.cont{
+    background-color: rgba(227, 216, 201, 0.7);
+    padding: 5%;
+    width: 100%;
+    height: 100%;
+}
+.contDer{
+    background-color: rgba(227, 216, 201, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: initial;
+    padding-top: 25%;
+    width: 100%;
+    height: 100%;
+}
+.text{
+    text-align: left;
+    font-family: 'Courier New', Courier, monospace;
+    font-style: oblique;
+    color: rgb(0, 0, 0);
+    opacity: 100;
+    font-weight: bold;
+}
+.txtIn{
+    border-radius: 10%;
+    width: 50%;
+}
+.txtMsg{
+    border-radius: 10%;
+    width: 50%;
+    height: 3cm;
+}
+.entradas{
+    flex-direction: column;
+    flex: 2cm;
+    padding-bottom: 0.5cm;
+}
+
+.send{
+    background-color: black;
+    color: white;
+    border-radius: 5%;
+}
+
+.Imagen{
+    background-image: url("./img/pepepepepe.jpg");
+    background-size: cover;
+    height: 6cm;
+    width: 6cm;
+    opacity: 100%;
+}
+
+.redes{
+    display: flex;
+    flex-direction: row;
+    width: 8cm;
+    height: 8cm;
+    position: relative;
+}
+.app{
+    width: 2cm;
+    height: 1.6cm;
+    transform: translateY(4.5cm);
+    border-color: black;
+    
+}
+
+.facebook:hover{
+    transform: translateY(3px); 
+}
+.facebook{
+    width: 100%;
+    height: 100%;
+    border-radius: 0.4cm;
+    background-image: url("./img/facebook.jpg");
+    background-size: 100%;
+    transition: transform 0.7s ease;
+}
+
+.wtp:hover{
+    transform: translateY(10px); 
+}
+.wtp{
+    width: 100%;
+    height: 100%;
+    border-radius: 0.4cm;
+    background-image: url("./img/whatsap.jpg");
+    background-size: 100%;
+    transition: transform 0.7s ease;
+}
+
+.tkt:hover{
+    transform: translateY(3px); 
+}
+.tkt{
+    width: 100%;
+    height: 100%;
+    border-radius: 0.4cm;
+    background-image: url("./img/tiktok.jpg");
+    background-size: 100%;
+    transition: transform 0.7s ease;
+}
+
+.twt:hover{
+    transform: translateY(6px); 
+}
+.twt{
+    width: 100%;
+    height: 100%;
+    border-radius: 0.4cm;
+    background-image: url("./img/twt.png");
+    background-size: 100%;
+    transition: transform 0.7s ease;
+}
+
+.ig:hover{
+    transform: translateY(6px); 
+}
+.ig{
+    width: 100%;
+    height: 100%;
+    border-radius: 0.4cm;
+    background-image: url("./img/ig.jpg");
+    background-size: 100%;
+    transition: transform 0.7s ease;
+}
+.developers{
+    opacity: 40%;
+    
+}

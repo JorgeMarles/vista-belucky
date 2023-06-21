@@ -2,50 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import ErrorPage from "./ErrorPage";
 import Root from './Root';
-import Login from './Usuario/Login';
-import SignUp from './Usuario/SignUp';
-import { CookiesProvider } from 'react-cookie';
-import LogOut from './Usuario/Logout';
-import DashBoard from './Usuario/Dashboard';
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root/>,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        path: "login",
-        element: <Login />,
-      },
-      {
-        path: "signup",
-        element: <SignUp />,
-      },
-      {
-        path: "logout",
-        element: <LogOut />,
-      },
-      {
-        path: "dashboard/",
-        element: <DashBoard />,
-      },
-      
-    ],
-  },
-]);
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <CookiesProvider />
-    <RouterProvider router={router} />
+    <Root />
   </React.StrictMode>
 );
 

@@ -1,20 +1,35 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Background.css';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
-import { Link, useNavigate, useOutletContext } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-const Login = () => {
-    const navigate = useNavigate();
+
+const Login = ({usuario}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    async function onLogin(e) {
+        e.preventDefault();
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+        } catch (error) {
+            alert(error.message);
+        }
+    }
+
+    useEffect(()=>{
+        console.log(usuario);
+    }, [])
+
+/*
     const onLogin = (e) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
+            .then(async (userCredential) => {
                 // Signed in
-                navigate("/")
+                setUsuario(await usuarioUid(userCredential.user.uid))
+                navigate("/dashboard")
 
             })
             .catch((error) => {
@@ -24,16 +39,8 @@ const Login = () => {
             });
 
     }
-    const usuario = useOutletContext();
 
-    useEffect(()=>{
-        console.log(usuario);
-
-        if(usuario.hasOwnProperty("uid")){
-            console.log("tiene uid");
-            navigate("/")
-        }
-    },[])
+    */
 
     return (
         <>
