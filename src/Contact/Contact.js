@@ -19,7 +19,7 @@ const Contact = () => {
     }
 
     return (
-        <div className='bg'>
+        <div className='bg2'>
             <div className='izq'>
                 <div className='cont'>
                     <h1 className='text'>Habla directamente con nosotros</h1>

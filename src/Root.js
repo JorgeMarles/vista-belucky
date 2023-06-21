@@ -15,6 +15,7 @@ import InfoRifa from './Rifa/InfoRifa';
 import Rifas from './Rifa/Rifas';
 import Principal from './Principal/Principal';
 import Contact from './Contact/Contact';
+import AboutUs from './AboutUs/AboutUs';
 
 function Root() {
   const [usuario, setUsuario] = useState(null);
@@ -48,7 +49,7 @@ function Root() {
         <Header usuario={usuario} />
 
         <Routes>
-          <Route path="/about" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/" element={<Principal />} />
           <Route path="/contact" element={<Contact/>} />
           <Route

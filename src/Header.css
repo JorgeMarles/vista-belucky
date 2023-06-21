@@ -1,3 +1,11 @@
 .bg-header{
     background-color: #ecef4a;
 }
+
+.hover-resize{
+    transition: transform 0.3s;
+}
+
+.hover-resize:hover{
+    transform: scale(1.2);
+}

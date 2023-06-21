@@ -22,25 +22,27 @@ export default function Header({ usuario }) {
                     <div className="collapse navbar-collapse d-flex justify-content-end" id="navbarText">
                         <span className="navbar-text">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li className="nav-item">
+                                <li className="nav-item mx-3 hover-resize">
                                     <Link className="nav-link" to={`/`} >Página Principal</Link>
                                 </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/about">Sobre Nosotros</a>
+                                <li className="nav-item mx-3 hover-resize">
+                                    <Link className="nav-link" to={"/about"}>Sobre Nosotros</Link>
                                 </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/contact">Contáctanos</a>
+                                <li className="nav-item mx-3 hover-resize">
+                                    <Link className="nav-link" to={"/contact"}>Contáctanos</Link>
                                 </li>
-                                <li className='nav-item'>
+                                <li className='nav-item mx-3'>
                                     {
                                         usuario ?
                                             <NavBar user={usuario} />
                                             :
+                                            <div className='hover-resize'>
                                                 <Link className="nav-link" to={`/login`} >Iniciar Sesión</Link>
+                                            </div>
                                     }
                                 </li>
                                 {
-                                    !usuario ? <li className='nav-item'>
+                                    !usuario ? <li className='nav-item mx-3 hover-resize'>
                                         <Link className="nav-link" to={`/signup`} >Registrarse</Link>
                                     </li> : ""
                                 }
